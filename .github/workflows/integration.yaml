@@ -10,22 +10,23 @@ jobs:
     outputs:
       lint-output: ${{ steps.linting.outputs.lint-status }}
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
-    - name: Caching Deps
-      id: cache-check
-      uses: actions/cache@v4
-      with:
-        path: ~/.npm
-        key: node-modules-${{ hashFiles('**/package-lock.json') }}
-    - name: Install Modules
-      if: steps.cache-check.outputs.cache-hit != 'true'
-      run: npm install
-    - name: Run ESLint
-      run: npm run lint
-    - name: Linting status
-      id: linting
-      run: echo "lint-status='true'" >> "$GITHUB_OUTPUT"
+    - run: gh cache delete node-modules-618956969b126349c9810c3ea843543bfe4a93a5d3cc2326a46e122761b4da01
+    # - name: Checkout Repository
+    #   uses: actions/checkout@v4
+    # - name: Caching Deps
+    #   id: cache-check
+    #   uses: actions/cache@v4
+    #   with:
+    #     path: ~/.npm
+    #     key: node-modules-${{ hashFiles('**/package-lock.json') }}
+    # - name: Install Modules
+    #   if: steps.cache-check.outputs.cache-hit != 'true'
+    #   run: npm install
+    # - name: Run ESLint
+    #   run: npm run lint
+    # - name: Linting status
+    #   id: linting
+    #   run: echo "lint-status='true'" >> "$GITHUB_OUTPUT"
   
   # open-pr:
   #   runs-on: ubuntu-latest
