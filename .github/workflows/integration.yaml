@@ -12,12 +12,12 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-    - name: Caching Deps
-      id: cache-check
-      uses: actions/cache@v4
-      with:
-        path: ~/.npm
-        key: node-modules-${{ hashFiles('**/package-lock.json') }}
+    # - name: Caching Deps
+    #   id: cache-check
+    #   uses: actions/cache@v4
+    #   with:
+    #     path: ~/.npm
+    #     key: node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install Modules
       if: steps.cache-check.outputs.cache-hit != 'true'
       run: npm install
