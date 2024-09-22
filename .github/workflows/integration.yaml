@@ -1,0 +1,17 @@
+name: Integrating Code
+on:
+  push:
+    branches-ignore:
+    - main
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+  - name: Checkout Repository
+    uses: actions/checkout@v4
+  - name: Caching Deps
+    usus: actions/cache@v4
+    with:
+      path: ~/.npm
+      key: node-modules-${{ hashFile('**/package-lock.json') }}s
+  - name: Install Modules
+    run: npm install 
