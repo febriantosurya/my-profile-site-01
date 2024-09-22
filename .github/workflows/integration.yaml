@@ -22,10 +22,10 @@ jobs:
       if: steps.cache-check.outputs.cache-hit != 'true'
       run: npm install
     - name: Run ESLint
+      run: npm run lint
+    - name: Linting status
       id: linting
-      run: |
-        npm run lint
-        echo "lint-status='true'" >> "$GITHUB_OUTPUT"
+      run: echo "lint-status='true'" >> "$GITHUB_OUTPUT"
   
   open-pr:
     runs-on: ubuntu-latest
