@@ -1,0 +1,72 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d1d1d1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Profile Container Styles */
+.profile-container {
+    width: 600px;
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Image Styles */
+.profile-photo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.profile-photo img:hover {
+    transform: scale(1.1); /* Scale up the image on hover */
+}
+
+
+/* Name and Bio Styles */
+h1.name {
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+p.bio {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Social Links (Icons) Styles */
+.social-links {
+    margin-top: 20px;
+}
+
+/* Icon Button Styles */
+.icon-btn {
+    display: inline-block;
+    margin: 0 10px;
+    width: 40px;
+    height: 40px;
+}
+
+/* Remove background color and center the SVG */
+.icon-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Hover Effect (slightly larger icon) */
+.icon-btn:hover img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
