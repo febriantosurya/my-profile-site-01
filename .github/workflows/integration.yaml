@@ -16,7 +16,9 @@ jobs:
       id: cache-check
       uses: actions/cache@v4
       with:
-        path: ~/.npm/deps
+        path: |
+          node_modules
+          ~/.npm
         key: node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install Modules
       if: steps.cache-check.outputs.cache-hit != 'true'
