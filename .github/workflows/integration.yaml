@@ -6,13 +6,29 @@ on:
 jobs:
   integrating:
     runs-on: ubuntu-latest
+    outputs:
+      lint-output: ${{ steps.linting.outputs.lint-status }}
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
     - name: Caching Deps
+      id: cache-check
       uses: actions/cache@v4
       with:
         path: ~/.npm
-        key: node-modules-${{ hashFiles('**/package-lock.json') }}s
+        key: node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install Modules
-      run: npm install 
+      if: steps.cache-check.outputs.cache-hit != 'true'
+      run: npm install
+    - name: Run ESLint
+      id: linting
+      run: |
+        npm run lint
+        echo "lint-status='true'" >> "$GITHUB_OUTPUT"
+  
+  merging:
+    needs: integrating
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check Lint
+      run: echo "${{ needs.integrating.outputs.lint-output }}"
