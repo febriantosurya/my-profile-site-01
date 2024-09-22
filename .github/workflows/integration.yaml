@@ -6,6 +6,8 @@ on:
     - master
 jobs:
   linting:
+    env:
+      GH_TOKEN: ${{ secrets.TOKEN }}
     runs-on: ubuntu-latest
     outputs:
       lint-output: ${{ steps.linting.outputs.lint-status }}
