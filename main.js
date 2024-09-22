@@ -1,5 +1,5 @@
 import './public/css/styles.css';
-//
+
 document.querySelector('#app').innerHTML = `
   <div class="profile-container">
     <div class="profile-photo">
