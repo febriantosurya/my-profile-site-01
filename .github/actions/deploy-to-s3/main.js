@@ -1,5 +1,5 @@
-const core = require("@actions/core");
-const exec = require("@actions/exec");
+const core = require('@actions/core');
+const exec = require('@actions/exec');
 
 function run() {
     const bucket = core.getInput('bucket', { required: true });
