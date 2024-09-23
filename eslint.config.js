@@ -4,11 +4,16 @@ export default [
   js.configs.recommended,
   {
     languageOptions: {
+      ecmaVersion: "latest",
       globals: {
         document: "readonly",
+        require: "readonly",
+        module: "readonly",
+        process: "readonly",
+        __dirname: "readonly",
       },
     },
-    files: ["*.js"],
+    files: ["**/*.js"],
     rules: {
       semi: "warn",
       "no-unused-vars": "warn",
