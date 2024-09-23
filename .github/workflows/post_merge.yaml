@@ -1,0 +1,32 @@
+name: Building the App
+on: workflow_dispatch
+jobs:
+  build-app:
+    environment: my-profile-creds
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - name: Caching Deps
+      id: cache-check
+      uses: actions/cache@v4
+      with:
+        path: |
+          node_modules
+          ~/.npm
+        key: node-modules-${{ hashFiles('**/package-lock.json') }}
+    - name: Install Modules
+      if: steps.cache-check.outputs.cache-hit != 'true'
+      run: npm install
+    - name: Build
+      run: npm run build
+    - name: Deploy
+      uses: ./.github/actions/deploy-to-s3
+      env:
+        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secret.AWS_SECRET_ACCESS_KEY }}
+      with:
+        bucket: ${{ vars.BUCKET_NAME }}
+        region: ${{ vars.BUCKET_REGION }}
+        dist: ./dist
+        
