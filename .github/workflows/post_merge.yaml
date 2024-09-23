@@ -1,0 +1,24 @@
+# name: Building the App
+# on:
+#   push:
+#     branch:
+#     - main
+# jobs:
+#   build-app:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Checkout Repository
+#       uses: actions/checkout@v4
+#     - name: Caching Deps
+#       id: cache-check
+#       uses: actions/cache@v4
+#       with:
+#         path: |
+#           node_modules
+#           ~/.npm
+#         key: node-modules-${{ hashFiles('**/package-lock.json') }}
+#     - name: Install Modules
+#       if: steps.cache-check.outputs.cache-hit != 'true'
+#       run: npm install
+#     - name: Build
+#       run: npm run build
